@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import BookManagement from './pages/BookManagement';
 
 function App() {
   return (
@@ -11,6 +12,9 @@ function App() {
           <div>
             <Route path="/" exact>
               <HomePage />
+            </Route>
+            <Route path="/book_management">
+              <BookManagement />
             </Route>
           </div>
         </Router>
