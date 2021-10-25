@@ -1,0 +1,19 @@
+{
+  "name": "library-rest",
+  "version": "1.0.0",
+  "description": "Library Database",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allisonglittle/library-database.git"
+  },
+  "author": "Allison Little and Adam Ivy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/allisonglittle/library-database/issues"
+  },
+  "homepage": "https://github.com/allisonglittle/library-database#readme"
+}
