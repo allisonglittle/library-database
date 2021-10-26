@@ -16,7 +16,7 @@ function BookManagement() {
                     <label>Author: 
                         <input type="text" name="Author" />
                     </label>
-
+                    <button type="submit">Submit</button>
                 </form>
             </div>
         </div>
