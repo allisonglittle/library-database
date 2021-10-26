@@ -1,4 +1,5 @@
 import React from "react";
+import BookList from "../components/BookList";
 
 function BookManagement() {
     return (
@@ -18,6 +19,7 @@ function BookManagement() {
                     </label>
                     <button type="submit">Submit</button>
                 </form>
+                <BookList />
             </div>
         </div>
     );
