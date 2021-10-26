@@ -1,6 +1,6 @@
 import React from "react";
 
-function AddBook () {
+function AddTitle () {
     return (
         <div>
             <h3>Add Title to Library</h3>
@@ -21,4 +21,4 @@ function AddBook () {
     );
 };
 
-export default AddBook;
+export default AddTitle;

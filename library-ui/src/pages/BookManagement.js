@@ -1,12 +1,12 @@
 import React from "react";
-import AddBook from "../components/AddBook";
+import AddTitle from "../components/AddTitle";
 import BookList from "../components/BookList";
 
 function BookManagement() {
     return (
         <div>
             <h1>Book and Inventory Management</h1>
-            <AddBook />
+            <AddTitle />
             <BookList />
         </div>
     );
