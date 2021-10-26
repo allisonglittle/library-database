@@ -1,6 +1,6 @@
 import React from "react";
 
-function BookList() {
+function TitleList() {
     return (
         <table>
             <caption>Titles</caption>
@@ -25,4 +25,4 @@ function BookList() {
     );
 };
 
-export default BookList;
+export default TitleList;
