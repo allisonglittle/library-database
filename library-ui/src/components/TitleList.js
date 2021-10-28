@@ -20,6 +20,13 @@ function TitleList() {
                     <td>Houghton Mifflin</td>
                     <td>04/04/2017</td>
                 </tr>
+                <tr>
+                    <td>9780553213102</td>
+                    <td>Pride and Prejudice</td>
+                    <td>Jane Austen</td>
+                    <td>Penguin Random House</td>
+                    <td>12/01/1983</td>
+                </tr>
             </tbody>
         </table>
     );
