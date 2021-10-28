@@ -14,6 +14,9 @@ function AddTitle () {
                 <label>Author: 
                     <input type="text" name="Author" />
                 </label>
+                <label>Date of Publication: 
+                    <input type="date" name="PublishDated" />
+                </label>
                 <button type="submit">Submit</button>
             </form>
         </div>
