@@ -4,12 +4,14 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import BookManagement from './pages/BookManagement';
 import PatronMangement from './pages/PatronManagement';
+import AppHeader from './components/AppHeader';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      
         <Router>
+          <AppHeader />
           <div>
             <Route path="/" exact>
               <HomePage />
@@ -23,7 +25,7 @@ function App() {
           </div>
         </Router>
         
-      </header>
+
     </div>
   );
 }
