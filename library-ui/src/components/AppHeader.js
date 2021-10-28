@@ -6,6 +6,7 @@ function AppHeader() {
         <nav>
             <Link to="/">Library Home</Link>
             <Link to="/patron_management">Patrons</Link>
+            <Link to="/title_management">Titles</Link>
             <Link to="/book_management">Books</Link>
         </nav>
     );

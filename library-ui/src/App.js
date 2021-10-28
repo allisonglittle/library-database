@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import BookManagement from './pages/BookManagement';
 import PatronMangement from './pages/PatronManagement';
 import AppHeader from './components/AppHeader';
+import TitleManagement from './pages/TitleManagement';
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
           <div>
             <Route path="/" exact>
               <HomePage />
+            </Route>
+            <Route path="/title_management">
+              <TitleManagement />
             </Route>
             <Route path="/book_management">
               <BookManagement />
