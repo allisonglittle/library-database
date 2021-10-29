@@ -20,6 +20,10 @@ app.get('/title_management', function(req, res)
         res.sendFile(__dirname + "/public/pages/title_management.html")      
     });                                         
 
+app.get('/books', function(req, res)                 
+    {
+        res.sendFile(__dirname + "/public/pages/book_management.html")      
+    });     
 /*
     LISTENER
 */
