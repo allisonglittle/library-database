@@ -35,7 +35,10 @@ app.get('/patron_list', function(req, res)
         res.sendFile(__dirname + "/public/pages/patron_list.html")      
     });     
 
-
+app.get('/create_loan', function(req, res)                 
+    {
+        res.sendFile(__dirname + "/public/pages/create_loan.html")      
+    });    
 /*
     LISTENER
 */
