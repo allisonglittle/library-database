@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <div>
+            <h2>Add a New Patron</h2>
+            <form>
+                <fieldset>
+                <input 
+                    label="First Name"
+                    type="text"
+                    placeholder="Type first name here"
+                    value={firstName}
+                    required/><br></br>
+                <input
+                    label="Last Name"
+                    type="text"
+                    placeholder="Type last name here"
+                    value={lastName}
+                    required/><br></br>
+                <input
+                    label="Registration Date"
+                    type="date"
+                    placeholder="Type last name here"
+                    value={registerDate}
+                    required/><br></br>
+                <input
+                    label="Email Address"
+                    type="email"
+                    placeholder="example@email.com"
+                    value={contactEmail}
+                    /><br></br>
+                <input
+                    label="Phone Number"
+                    type="tel"
+                    placeholder="555-555-5555"
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    value={contactPhone}
+                    /><br></br>
+                <input
+                    label="Favorite Title"
+                    type="text"
+                    placeholder="Patron's Favorite Book"
+                    value={favoriteTitle}
+                />
+            </fieldset>
+            </form>
+            <button>
+                Save Patron
+            </button>
+        </div>
+    </body>
+</html>
