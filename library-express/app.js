@@ -20,6 +20,25 @@ app.get('/title_management', function(req, res)
         res.sendFile(__dirname + "/public/pages/title_management.html")      
     });                                         
 
+app.get('/books', function(req, res)                 
+    {
+        res.sendFile(__dirname + "/public/pages/book_management.html")      
+    });     
+
+app.get('/add_patron', function(req, res)                 
+    {
+        res.sendFile(__dirname + "/public/pages/add_patron.html")      
+    });     
+
+app.get('/patron_list', function(req, res)                 
+    {
+        res.sendFile(__dirname + "/public/pages/patron_list.html")      
+    });     
+
+app.get('/create_loan', function(req, res)                 
+    {
+        res.sendFile(__dirname + "/public/pages/create_loan.html")      
+    });    
 /*
     LISTENER
 */
