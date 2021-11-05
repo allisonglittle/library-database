@@ -17,7 +17,13 @@
                     <option value="Crime and Punishment">Crime and Punishment</option>
                     <option value="Hamlet">Hamlet</option>
                     <option value="One Hundred Years of Solitude">One Hundred Years of Solitude</option>
-                </select><br></br>
+                </select><br></br></p>
+                <p>
+                    Due Date:  
+                    <b><script>
+                        var newDate = new Date(Date.now() + 12096e5);
+                        document.write(newDate.toDateString());
+                    </script></b>
                 </p>
                 <button>
                     Create Loan
@@ -26,8 +32,6 @@
                     Reset
                 </button>
             </form>
-
         </div>
-    );
     </body>
 </html>
