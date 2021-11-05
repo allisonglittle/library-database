@@ -56,6 +56,11 @@ app.get('/loan_status', function(req, res)
         res.sendFile(__dirname + "/public/pages/loan_status.html")
     });
 
+app.get('/add_title', function(req, res)
+    {
+        res.sendFile(__dirname + "/public/pages/add_title.html")
+    });
+
     /*  
     Citation for the following function:
     Date: 03NOV21
