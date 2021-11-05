@@ -49,7 +49,13 @@ app.get('/patron_list', function(req, res)
 app.get('/create_loan', function(req, res)                 
     {
         res.sendFile(__dirname + "/public/pages/create_loan.html")      
+    }); 
+
+app.get('/edit_loan', function(req, res)                 
+    {
+        res.sendFile(__dirname + "/public/pages/edit_loan.html")      
     });   
+    
     
 app.get('/loan_status', function(req, res)
     {
