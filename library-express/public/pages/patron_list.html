@@ -41,10 +41,21 @@
                         <td>jsmith@sample.com</td>
                         <td>333-333-3333</td>
                         <td></td>
-              
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div>
+            <h2>Find a Patron</h2>
+            <form>
+                <label for="fname">First name:</label><br>
+                <input type="text" id="fname" name="fname"><br>
+                <label for="lname">Last name:</label><br>
+                <input type="text" id="lname" name="lname"><br>
+                <label for="phone">Phone:</label><br>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="555-555-5555"><br><br>
+                <input type="submit" value="Submit">
+            </form>
         </div>
     </body>
 </html>
