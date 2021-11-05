@@ -20,6 +20,7 @@
                 <th>ISBN</th>
                 <th>Title</th>
                 <th>Date Purchased</th>
+                <th>Is Active?</th>
             </thead>
             <tbody>
                 {/* this is temporary, it will eventually be another component that pulls data from SQL*/}
@@ -28,18 +29,36 @@
                     <td>9781328869333</td>
                     <td>1984</td>
                     <td>04/04/2021</td>
+                    <td>
+                        <select name="isActive" id="isActive">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>104</td>
                     <td>9781328869333</td>
                     <td>1984</td>
                     <td>07/14/2021</td>
+                    <td>
+                        <select name="isActive" id="isActive">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>105</td>
                     <td>9780553213102</td>
                     <td>Pride and Prejudice</td>
                     <td>12/10/2020</td>
+                    <td>
+                        <select name="isActive" id="isActive">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </td>
                 </tr>
             </tbody>
         </table>
