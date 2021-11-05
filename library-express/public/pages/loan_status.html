@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <h1>Library Inventory Management</h1>
+        <form>
+            <h1>Add loan status</h1>
+            <label>Status: </label>
+            <input type="text" id="status"><br>
+            <p><input type="submit" value="Submit"></p>
+        </form>
+        <table>
+            <caption>Statuses</caption>
+            <thead>
+                <th>Status ID</th>
+                <th>Status Name</th>
+            </thead>
+            <tbody>
+                {/* this is temporary, it will eventually be another component that pulls data from SQL*/}
+                <tr>
+                    <td>1</td>
+                    <td>On Loan</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Renewed</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Returned</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Lost</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

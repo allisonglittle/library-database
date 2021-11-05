@@ -3,24 +3,13 @@
     <body>
         <div>
             <h3>Add Title to Library</h3>
-            <form>
-                <label>ISBN: 
-                    <input type="text" name="ISBN" />
-                </label>
-                <label>Title: 
-                    <input type="text" name="Title" />                   
-                </label>
-                <label>Author: 
-                    <input type="text" name="Author" />
-                </label>
-                <label>Publisher: 
-                    <input type="text" name="Publisher" />
-                </label>
-                <label>Date of Publication: 
-                    <input type="date" name="PublishDated" />
-                </label>
-                
-                <button type="submit">Submit</button>
+            <!-- <form action="/query_book_api" method="post"> -->
+            <form action="/add_title" method="get">
+                <p><label for="title">Title:</label><br>
+                <input type="text" id="title" name="title"></p>
+                <p><label for="author">Author:</label><br>
+                <input type="text" id="author" name="author"></p>
+                <p><input type="submit" value="Submit"></p>
             </form>
         </div>
         <table>
