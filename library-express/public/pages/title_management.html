@@ -5,10 +5,16 @@
             <h3>Add Title to Library</h3>
             <!-- <form action="/query_book_api" method="post"> -->
             <form action="/add_title" method="get">
+                <p><label for="ISBN">ISBN:</label><br>
+                    <input type="text" id="ISBN" name="ISBN"></p>
                 <p><label for="title">Title:</label><br>
-                <input type="text" id="title" name="title"></p>
+                    <input type="text" id="title" name="title"></p>
                 <p><label for="author">Author:</label><br>
-                <input type="text" id="author" name="author"></p>
+                    <input type="text" id="author" name="author"></p>
+                <p><label for="publisher">Publisher:</label><br>
+                    <input type="text" id="publisher" name="publisher"></p>
+                <p><label for="datePublished">Date Published:</label><br>
+                    <input type="date" id="datePublished" name="datePublished"></p>
                 <p><input type="submit" value="Submit"></p>
             </form>
         </div>

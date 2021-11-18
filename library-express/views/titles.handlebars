@@ -1,0 +1,45 @@
+<main>
+    <div>
+        <h3>Add Title to TEST Library</h3>
+        <!-- <form action="/query_book_api" method="post"> -->
+        <form id="addTitle" action="/titles" method="post">
+            <p><label for="ISBN">ISBN:</label><br>
+                <input type="text" name="ISBN">
+            </p>
+            <p><label for="bookTitle">Title:</label><br>
+                <input type="text" name="bookTitle">
+            </p>
+            <p><label for="author">Author:</label><br>
+                <input type="text" name="author">
+            </p>
+            <p><label for="publisher">Publisher:</label><br>
+                <input type="text" name="publisher">
+            </p>
+            <p><label for="datePublished">Date Published:</label><br>
+                <input type="date" name="datePublished">
+            </p>
+            <p><input type="submit" value="Submit"></p>
+        </form>
+    </div>
+    <table>
+        <caption>Titles</caption>
+        <thead>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>Date Published</th>
+        </thead>
+        <tbody>
+            {{#each titles}}
+            <tr>
+                <td>{{ISBN}}</td>
+                <td>{{bookTitle}}</td>
+                <td>{{author}}</td>
+                <td>{{publisher}}</td>
+                <td>{{datePublished}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</main>

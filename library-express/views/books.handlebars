@@ -1,0 +1,42 @@
+<h1>Library Inventory Management</h1>
+<form id="addBook" action="/books" method="post">
+    <h1>Add book to library inventory</h1>
+    <label for="ISBN">ISBN: </label>
+    <select name="ISBN">
+        {{#each titles}}
+        <option value="{{ISBN}}">{{ISBN}} - {{bookTitle}}</option>
+        {{/each}}
+    </select>
+    <label for="purchaseDate">Purchase Date: </label>
+    <input type="date" name="purchaseDate" />
+    <button type="submit">Submit</button>
+</form>
+<br>
+<div>
+    <form>
+        <label>Search by Title:
+            <input type="text" />
+        </label>
+    </form>
+    <table>
+        <caption>Titles</caption>
+        <thead>
+            <th>Book ID</th>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Date Purchased</th>
+            <th>Is Active?</th>
+        </thead>
+        <tbody>
+            {{#each books}}
+            <tr>
+                <td>{{bookID}}</td>
+                <td>{{ISBN}}</td>
+                <td>{{bookTitle}}</td>
+                <td>{{purchaseDate}}</td>
+                <td>{{isActive}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

@@ -7,44 +7,47 @@ var express = require('express');   // We are using the express library for the 
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
 PORT        = 4402;                 // Set a port number at the top so it's easy to change in the future
 const api_func = require('./helpers/api_helper');
+var mysql = require('./helpers/db-connector.js');
+var bodyParser = require('body-parser');
+var handlebars = require('express-handlebars').create({
+    defaultLayout:'index',
+});
 
+var db = require('./helpers/db-connector')
 /* 
     FUNCTIONS
 */
+// app.use(express.static(__dirname + "/public"));
+app.use('/', express.static('public'));
+app.use(express.urlencoded({extended: true}));
+// Handlebars setting
+app.engine('handlebars', handlebars.engine);
+app.set('view engine', 'handlebars');
 
-app.use(express.urlencoded({
-    extended: true
-}));
-
-
-
+app.set('mysql', mysql);
 /*
     ROUTES
 */
 app.get('/', function(req, res)                 
     {
-        res.sendFile(__dirname + "/public/pages/homepage.html")      
+        res.render("main")
+        // res.sendFile(__dirname + "/public/pages/homepage.html")      
     });                                         
 
-app.get('/title_management', function(req, res)                 
-    {
-        res.sendFile(__dirname + "/public/pages/title_management.html")      
-    });                                         
-
-app.get('/books', function(req, res)                 
-    {
-        res.sendFile(__dirname + "/public/pages/book_management.html")      
-    });     
-
+// app.get('/title_management', function(req, res)                 
+//     {
+//         res.sendFile(__dirname + "/public/pages/title_management.html")      
+//     });                                         
+app.use('/titles', require('./titles.js'));
+// app.get('/books', function(req, res)                 
+//     {
+//         res.sendFile(__dirname + "/public/pages/book_management.html")      
+//     });     
+app.use('/books', require('./books.js'));
 app.get('/add_patron', function(req, res)                 
     {
         res.sendFile(__dirname + "/public/pages/add_patron.html")      
-    });     
-
-app.get('/patron_list', function(req, res)                 
-    {
-        res.sendFile(__dirname + "/public/pages/patron_list.html")      
-    });     
+    });      
 
 app.get('/create_loan', function(req, res)                 
     {
