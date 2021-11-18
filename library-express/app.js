@@ -51,18 +51,20 @@ app.get('/add_patron', function(req, res)
 
 app.get('/create_loan', function(req, res)                 
     {
-        res.sendFile(__dirname + "/public/pages/create_loan.html")      
+        res.render("create_loan")
+        // res.sendFile(__dirname + "/public/pages/create_loan.html")      
     }); 
 
 app.get('/edit_loan', function(req, res)                 
     {
-        res.sendFile(__dirname + "/public/pages/edit_loan.html")      
+        res.render("edit_loan")
+        // res.sendFile(__dirname + "/public/pages/edit_loan.html")      
     });   
-    
-    
+     
 app.get('/loan_status', function(req, res)
     {
-        res.sendFile(__dirname + "/public/pages/loan_status.html")
+        res.render("loan_status")
+        // res.sendFile(__dirname + "/public/pages/loan_status.html")
     });
 
 app.get('/add_title', function(req, res)
