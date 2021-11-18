@@ -39,11 +39,11 @@ app.get('/', function(req, res)
 //         res.sendFile(__dirname + "/public/pages/title_management.html")      
 //     });                                         
 app.use('/titles', require('./titles.js'));
-app.get('/books', function(req, res)                 
-    {
-        res.sendFile(__dirname + "/public/pages/book_management.html")      
-    });     
-
+// app.get('/books', function(req, res)                 
+//     {
+//         res.sendFile(__dirname + "/public/pages/book_management.html")      
+//     });     
+app.use('/books', require('./books.js'));
 app.get('/add_patron', function(req, res)                 
     {
         res.sendFile(__dirname + "/public/pages/add_patron.html")      
