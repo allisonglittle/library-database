@@ -1,14 +1,14 @@
 <h1>Library Inventory Management</h1>
-<form>
+<form id="addBook" action="/books" method="post">
     <h1>Add book to library inventory</h1>
-    <label>ISBN: </label>
-    <select name="title" id="title">
+    <label for="ISBN">ISBN: </label>
+    <select name="ISBN">
         {{#each titles}}
         <option value="{{ISBN}}">{{ISBN}} - {{bookTitle}}</option>
         {{/each}}
     </select>
-    <label>Purchase Date: </label>
-    <input type="date" name="purchase_date" />
+    <label for="purchaseDate">Purchase Date: </label>
+    <input type="date" name="purchaseDate" />
     <button type="submit">Submit</button>
 </form>
 <br>
