@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <h1>Library Inventory Management</h1>
+        <form>
+            <h1>Add loan status</h1>
+            <label>Status: </label>
+            <input type="text" id="status"><br>
+            <p><input type="submit" value="Submit"></p>
+        </form>
+        <table>
+            <caption>Statuses</caption>
+            <thead>
+                <th>Status ID</th>
+                <th>Status Name</th>
+            </thead>
+            <tbody>
+                {{#each LoanStatus}}
+                <tr>
+                    <td>{{statusID}}</td>
+                    <td>{{statusDescription}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </body>
+</html>

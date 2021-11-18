@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <div>
+            <h2>Create a Loan</h2>
+            <form>
+                <p><label>Select the Patron: </label>
+                    <select name="patron" id="patron">
+                        {{#each patrons}}
+                        <option value="{{patronID}}">{{patronLast}}, {{patronFirst}}</option>
+                        {{/each}}
+                    </select></p>
+                <p><label for="books">Choose the books: </label>
+                    <select name="books" id="books" multiple>
+                        {{#each books}}
+                        <option value="{{bookID}}">{{bookID}} - {{bookTitle}}</option>
+                        {{/each}}
+                    </select><br></br></p>
+                <p>
+                    Due Date:  
+                    <b><script>
+                        var newDate = new Date(Date.now() + 12096e5);
+                        document.write(newDate.toDateString());
+                    </script></b>
+                </p>
+                <button>
+                    Create Loan
+                </button>
+                <button>
+                    Reset
+                </button>
+            </form>
+        </div>
+        <div>
+            <h1>Loans</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Patron</th>
+                        <th>Loan Date</th>
+                        <th>Book Count</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each Loans}}
+                    <tr>
+                        <td>{{patron}}</td>
+                        <td>{{loanDate}}</td>
+                        <td>{{bookCount}}</td>
+                        <td>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
