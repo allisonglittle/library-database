@@ -16,7 +16,7 @@ module.exports = function () {
 
     /* Get Patron info from database */
     function getPatrons(res, mysql, context, complete) {
-        mysql.pool.query("SELECT p.memberID, p.firstName, p.lastName FROM Patrons p", function (error, results, fields) {
+        mysql.pool.query("SELECT p.memberID as 'patronID', p.firstName, p.lastName FROM Patrons p", function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
@@ -59,16 +59,16 @@ module.exports = function () {
         console.log(req.body)
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO Loans (memberID, loanDate) VALUES (?, CURRENT_DATE());";
-        var sql1 = "INSERT INTO LoanItems (loanID, bookID, loanStatus, dueDate, renewalCount) VALUES ((SELECT loanID FROM Loans WHERE memberID = ? and loanDate = CURRENT_DATE()), ?, 1, DATE_ADD(CURRENT_DATE(), INTERVAL 14 DAY), 0);";
+        var sql1 = "INSERT INTO LoanItems (loanID, bookID, loanStatus, dueDate, renewalCount) VALUES ((SELECT loanID FROM Loans WHERE memberID = ? and loanDate = CURRENT_DATE() order by loanID desc LIMIT 1), ?, 1, DATE_ADD(CURRENT_DATE(), INTERVAL 14 DAY), 0);";
         var inserts = [req.body.patronID];
-        var inserts1 = [req.body.bookID, req.body.patronID];
+        var inserts1 = [req.body.patronID, req.body.bookID];
         sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
             if (error) {
                 console.log(JSON.stringify(error))
                 res.write(JSON.stringify(error));
                 res.end();
             } else {
-                res.redirect('/create_loan');
+                // res.redirect('/create_loan');
             }
         });
         sql1 = mysql.pool.query(sql1,inserts1,function(error, results, fields){
