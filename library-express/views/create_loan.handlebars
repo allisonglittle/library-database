@@ -3,7 +3,7 @@
     <body>
         <div>
             <h2>Create a Loan</h2>
-            <form>
+            <form id="addLoan" action="/create_loan" method="post">
                 <p><label>Select the Patron: </label>
                     <select name="patron" id="patron">
                         {{#each patrons}}
@@ -23,9 +23,8 @@
                         document.write(newDate.toDateString());
                     </script></b>
                 </p>
-                <button>
-                    Create Loan
-                </button>
+                {{!-- <input type="submit" value="Create Loan"> --}}
+                <input type="submit" value="Create Loan">
                 <button>
                     Reset
                 </button>
