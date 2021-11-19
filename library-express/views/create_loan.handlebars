@@ -7,7 +7,7 @@
                 <p><label>Select the Patron: </label>
                     <select name="patronID" id="patronID">
                         {{#each patrons}}
-                        <option value="{{patronID}}">{{lastName}}, {{firstName}}</option>
+                        <option value="{{memberID}}">{{lastName}}, {{firstName}}</option>
                         {{/each}}
                     </select></p>
                 <p><label for="books">Choose the books: </label>
@@ -24,8 +24,14 @@
                         document.write(newDate.toDateString());
                     </script></b>
                 </p>
+
                 {{!-- <input type="submit" value="Create Loan"> --}}
                 <input type="submit" value="Create Loan">
+
+                <button type="submit">
+                    Create Loan
+                </button>
+
                 <button>
                     Reset
                 </button>
