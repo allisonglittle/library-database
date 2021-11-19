@@ -7,7 +7,7 @@
                 <p><label>Select the Patron: </label>
                     <select name="patronID" id="patronID">
                         {{#each patrons}}
-                        <option value="{{memberID}}">{{lastName}}, {{firstName}}</option>
+                        <option value="{{patronID}}">{{lastName}}, {{firstName}}</option>
                         {{/each}}
                     </select></p>
                 <p><label for="books">Choose the books: </label>
@@ -28,9 +28,9 @@
                 {{!-- <input type="submit" value="Create Loan"> --}}
                 <input type="submit" value="Create Loan">
 
-                <button type="submit">
+                {{!-- <button type="submit">
                     Create Loan
-                </button>
+                </button> --}}
 
                 <button>
                     Reset
