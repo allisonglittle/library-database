@@ -26,6 +26,18 @@ module.exports = function () {
         });
     }
 
+    /*Get book data from database*/
+    function getBooks(res, mysql, context, complete) {
+        mysql.pool.query("SELECT b.bookID, b.ISBN, t.bookTitle FROM Books b INNER JOIN Titles t ON b.ISBN = t.ISBN WHERE b.isActive = TRUE AND b.bookID NOT IN (SELECT li.bookID FROM LoanItems li WHERE li.loanStatus <> 3)", function (error, results, fields) {
+            if (error) {
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.books = results;
+            complete();
+        });
+    }
+
     /*Display all loans.*/
     router.get('/', function (req, res) {
         var callbackCount = 0;
@@ -33,9 +45,10 @@ module.exports = function () {
         var mysql = req.app.get('mysql');
         getLoanDetails(res, mysql, context, complete);
         getPatrons(res, mysql, context, complete);
+        getBooks(res, mysql, context, complete);
         function complete() {
             callbackCount++;
-            if (callbackCount >= 2) {
+            if (callbackCount >= 3) {
                 res.render('create_loan', context);
             }
         }
