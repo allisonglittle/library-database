@@ -13,7 +13,7 @@ var handlebars = require('express-handlebars').create({
     defaultLayout:'index',
 });
 
-var db = require('./helpers/db-connector')
+var db = require('./helpers/db-connector');
 /* 
     FUNCTIONS
 */
