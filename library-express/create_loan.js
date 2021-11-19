@@ -62,9 +62,6 @@ module.exports = function () {
         var sql1 = "INSERT INTO LoanItems (loanID, bookID, loanStatus, dueDate, renewalCount) VALUES (LAST_INSERT_ID(), ?, 1, DATE_ADD(CURRENT_DATE(), INTERVAL 14 DAY), 0);";
         var inserts = [req.body.patronID];
         var inserts1 = [req.body.bookID];
-        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
-            if(error){
-
         sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
             if (error) {
 
