@@ -51,13 +51,13 @@ app.get('/edit_loan', function(req, res)
         // res.sendFile(__dirname + "/public/pages/edit_loan.html")      
     });   
      
-app.get('/loan_status', function(req, res)
-    {
-        res.render("loan_status")
-        // res.sendFile(__dirname + "/public/pages/loan_status.html")
-    });
+// app.get('/loan_status', function(req, res)
+//     {
+//         res.render("loan_status")
+//         // res.sendFile(__dirname + "/public/pages/loan_status.html")
+//     });
 
-
+app.use('/loan_status', require('./loanstatus.js'));
     /*  
     Citation for the following function:
     Date: 03NOV21
