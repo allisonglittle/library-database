@@ -28,14 +28,11 @@
 </div>
 <div>
     <h2>Find a Patron</h2>
-    <form>
-        <label for="fname">First name:</label><br>
-        <input type="text" id="fname" name="fname"><br>
-        <label for="lname">Last name:</label><br>
-        <input type="text" id="lname" name="lname"><br>
-        <label for="phone">Phone:</label><br>
-        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="555-555-5555"><br><br>
-        <input type="submit" value="Search">
+    <form id='search_patrons' action='' method=''>
+        <!--- this form does not submit directly, the button handles all the interaction with backend -->
+        <label> First Name:</label>
+        <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
+        <input type="button" value="Search" onclick="searchPatronsByFirstName()">
     </form>
 </div>
 </div>
