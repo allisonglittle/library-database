@@ -4,7 +4,7 @@ module.exports = function(){
 
     /*Get loan information from database*/
     function getLoanDetails(res, mysql, context, complete){
-        mysql.pool.query("SELECT l.loanID as 'loanID', CONCAT(p.firstName, ' ', p.lastName) as 'patronName', b.bookID  as 'bookID', t.bookTitle as 'bookTitle', li.dueDate as 'dueDate', ls.statusID as 'currentID', ls.statusDescription as 'currentStatus', li.renewalCount as 'renewalCount' FROM Loans l, LoanItems li, Patrons p, Titles t, Books b, LoanStatus ls WHERE p.memberID = l.memberID AND l.loanID = li.loanID AND li.bookID = b.bookID AND b.ISBN = t.ISBN AND ls.statusID = li.loanStatus;", function(error, results, fields){
+        mysql.pool.query("SELECT l.loanID, CONCAT(p.firstName, ' ', p.lastName) as 'patronName', DATE_FORMAT(l.loanDate, '%m/%d/%Y') as loanDate, count(li.bookID) as 'bookCount' FROM Loans l INNER JOIN Patrons p ON l.memberID = p.memberID INNER JOIN LoanItems li on l.loanID = li.loanID GROUP BY l.loanID", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -14,6 +14,9 @@ module.exports = function(){
         });
     }
 
+    /* Get Patron info from database */
+    
+
     /*Display all loans.*/
     router.get('/', function(req, res){
         var callbackCount = 0;
@@ -22,8 +25,8 @@ module.exports = function(){
         getLoanDetails(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
-                res.render('books', context);
+            if(callbackCount >= 1){
+                res.render('create_loan', context);
             }
         }
     }); 
