@@ -30,25 +30,15 @@ app.set('mysql', mysql);
 */
 app.get('/', function(req, res)                 
     {
-        res.render("main")
-        // res.sendFile(__dirname + "/public/pages/homepage.html")      
+        res.render("main")   
     });                                         
-
-// app.get('/title_management', function(req, res)                 
-//     {
-//         res.sendFile(__dirname + "/public/pages/title_management.html")      
-//     });                                         
+                                       
 app.use('/titles', require('./titles.js'));
-// app.get('/books', function(req, res)                 
-//     {
-//         res.sendFile(__dirname + "/public/pages/book_management.html")      
-//     });     
+
 app.use('/books', require('./books.js'));
-// app.get('/add_patron', function(req, res)                 
-//     {
-//         res.sendFile(__dirname + "/public/pages/add_patron.html")      
-//     });      
+
 app.use('/patrons', require('./patrons.js'));
+
 app.get('/create_loan', function(req, res)                 
     {
         res.render("create_loan")
@@ -67,10 +57,6 @@ app.get('/loan_status', function(req, res)
         // res.sendFile(__dirname + "/public/pages/loan_status.html")
     });
 
-app.get('/add_title', function(req, res)
-    {
-        res.sendFile(__dirname + "/public/pages/add_title.html")
-    });
 
     /*  
     Citation for the following function:
