@@ -49,6 +49,18 @@ module.exports = function(){
         });
     }
 
+    /*Get patrons from database*/
+        function getLoanDetails(res, mysql, context, complete){
+            mysql.pool.query("SELECT memberID, favoriteTitle, firstName, lastName, registerDate, contactPhone, contactEmail from Patrons;", function(error, results, fields){
+                if(error){
+                    res.write(JSON.stringify(error));
+                    res.end();
+                }
+                context.patrons = results;
+                complete();
+            });
+        }
+
     /*Display all books.*/
     router.get('/', function(req, res){
         var callbackCount = 0;
