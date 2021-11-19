@@ -7,7 +7,7 @@
                 <p><label>Select the Patron: </label>
                     <select name="patron" id="patron">
                         {{#each patrons}}
-                        <option value="{{patronID}}">{{patronLast}}, {{patronFirst}}</option>
+                        <option value="{{patronID}}">{{lastName}}, {{firstName}}</option>
                         {{/each}}
                     </select></p>
                 <p><label for="books">Choose the books: </label>
@@ -43,9 +43,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each Loans}}
+                    {{#each loans}}
                     <tr>
-                        <td>{{patron}}</td>
+                        <td>{{patronName}}</td>
                         <td>{{loanDate}}</td>
                         <td>{{bookCount}}</td>
                         <td>

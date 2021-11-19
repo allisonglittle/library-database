@@ -39,11 +39,12 @@ app.use('/books', require('./books.js'));
 
 app.use('/patrons', require('./patrons.js'));
 
-app.get('/create_loan', function(req, res)                 
-    {
-        res.render("create_loan")
-        // res.sendFile(__dirname + "/public/pages/create_loan.html")      
-    }); 
+// app.get('/create_loan', function(req, res)                 
+//     {
+//         res.render("create_loan")
+//         // res.sendFile(__dirname + "/public/pages/create_loan.html")      
+//     }); 
+app.use('/create_loan', require('./create_loan.js'));
 
 app.get('/edit_loan', function(req, res)                 
     {
@@ -51,13 +52,8 @@ app.get('/edit_loan', function(req, res)
         // res.sendFile(__dirname + "/public/pages/edit_loan.html")      
     });   
      
-app.get('/loan_status', function(req, res)
-    {
-        res.render("loan_status")
-        // res.sendFile(__dirname + "/public/pages/loan_status.html")
-    });
 
-
+app.use('/loan_status', require('./loanstatus.js'));
     /*  
     Citation for the following function:
     Date: 03NOV21
