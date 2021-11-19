@@ -5,13 +5,14 @@
             <h2>Create a Loan</h2>
             <form id="addLoan" action="/create_loan" method="post">
                 <p><label>Select the Patron: </label>
-                    <select name="patron" id="patron">
+                    <select name="patronID" id="patronID">
                         {{#each patrons}}
                         <option value="{{memberID}}">{{lastName}}, {{firstName}}</option>
                         {{/each}}
                     </select></p>
                 <p><label for="books">Choose the books: </label>
-                    <select name="books" id="books" multiple>
+                    {{!-- <select name="books" id="bookID" multiple> --}}
+                    <select name="bookID" id="bookID">
                         {{#each books}}
                         <option value="{{bookID}}">{{bookID}} - {{bookTitle}}</option>
                         {{/each}}
@@ -23,9 +24,14 @@
                         document.write(newDate.toDateString());
                     </script></b>
                 </p>
+
+                {{!-- <input type="submit" value="Create Loan"> --}}
+                <input type="submit" value="Create Loan">
+
                 <button type="submit">
                     Create Loan
                 </button>
+
                 <button>
                     Reset
                 </button>
