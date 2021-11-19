@@ -1,0 +1,69 @@
+<div>
+    <h2>Add a New Patron</h2>
+    <form id="addPatron" action="/patrons" method="post">
+        <p><label for="firstName">First Name:</label><br>
+            <input type="text" name="firstName">
+        </p>
+        <p><label for="lastName">Last Name:</label><br>
+            <input type="text" name="lastName">
+        </p>
+        <p><label for="registerDate">Registered Date:</label><br>
+            <input type="date" name="registerDate">
+        </p>
+        <p><label for="contactEmail">Email:</label><br>
+            <input type="email" name="contactEmail">
+        </p>
+        <p><label for="contactPhone">Phone:</label><br>
+            <input type="tel" name="contactPhone">
+        </p>
+        <p><label for="favoriteTitle">Favorite Book:</label><br>
+            <select name="favoriteTitle">
+                {{#each titles}}
+                <option value="{{ISBN}}">{{ISBN}} - {{bookTitle}}</option>
+                {{/each}}
+            </select>
+        </p>
+        <p><input type="submit" value="Submit"></p>
+    </form>
+</div>
+<div>
+    <h2>Find a Patron</h2>
+    <form>
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname"><br>
+        <label for="phone">Phone:</label><br>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="555-555-5555"><br><br>
+        <input type="submit" value="Search">
+    </form>
+</div>
+</div>
+<div>
+    <h2>Existing Patrons</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Registration Date</th>
+                <th>Contact Email</th>
+                <th>Contact Phone</th>
+                <th>Favorite Book</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each patrons}}
+            <tr>
+                <td>{{firstName}}</td>
+                <td>{{lastName}}</td>
+                <td>{{registerDate}}</td>
+                <td>{{contactEmail}}</td>
+                <td>{{contactPhone}}</td>
+                <td>{{bookTitle}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

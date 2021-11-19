@@ -44,11 +44,11 @@ app.use('/titles', require('./titles.js'));
 //         res.sendFile(__dirname + "/public/pages/book_management.html")      
 //     });     
 app.use('/books', require('./books.js'));
-app.get('/add_patron', function(req, res)                 
-    {
-        res.sendFile(__dirname + "/public/pages/add_patron.html")      
-    });      
-
+// app.get('/add_patron', function(req, res)                 
+//     {
+//         res.sendFile(__dirname + "/public/pages/add_patron.html")      
+//     });      
+app.use('/patrons', require('./patrons.js'));
 app.get('/create_loan', function(req, res)                 
     {
         res.render("create_loan")
