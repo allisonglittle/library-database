@@ -18,19 +18,14 @@
                 </tr>
             </thead>
             <tbody>
-                {{#each loans}}
+                {{#each loanItems}}
                 <tr>
                     <td>{{loanID}}</td>
                     <td>{{patronName}}</td>
                     <td>{{bookID}}</td>
                     <td>{{bookTitle}}</td>
                     <td>{{dueDate}}</td>
-                    <td><select>
-                        <option value="{{currentID}}">{{currentStatus}}</option>
-                        {{#each statuses}}
-                        <option value="{{statusID}}">{{statusDescription}}</option>
-                        {{/each}}
-                    </select></p></td>
+                    <td>{{statusDescription}}</td>
                     <td>{{renewalCount}}</td>
                     <td><button>Renew</button></td>
                     <td><button>Submit Changes</button></td>
