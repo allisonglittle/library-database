@@ -2,7 +2,7 @@
 <form id="addBook" action="/books" method="post">
     <h1>Add book to library inventory</h1>
     <label for="ISBN">ISBN: </label>
-    <select name="ISBN">
+    <select name="ISBN" required>
         {{#each titles}}
         <option value="{{ISBN}}">{{ISBN}} - {{bookTitle}}</option>
         {{/each}}

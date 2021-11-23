@@ -15,7 +15,7 @@ module.exports = function(){
 
     /*Get book data from database*/
     function getBooks(res, mysql, context, complete){
-        mysql.pool.query("SELECT b.bookID, b.ISBN, t.bookTitle, DATE_FORMAT(b.purchaseDate, '%m/%d/%Y') as 'purchaseDate', b.isActive FROM Books b INNER JOIN Titles t ON b.ISBN = t.ISBN;", function(error, results, fields){
+        mysql.pool.query("SELECT b.bookID, b.ISBN, t.bookTitle, DATE_FORMAT(b.purchaseDate, '%m/%d/%Y') as 'purchaseDate', CASE WHEN b.isActive = 1 THEN 'True' ELSE 'False' END AS 'isActive' FROM Books b INNER JOIN Titles t ON b.ISBN = t.ISBN;", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -38,16 +38,16 @@ module.exports = function(){
     }
 
     /*Get patrons from database*/
-        function getPatronDetails(res, mysql, context, complete){
-            mysql.pool.query("SELECT memberID, favoriteTitle, firstName, lastName, DATE_FORMAT(registerDate, '%m/%d/%Y') as 'registerDate', contactPhone, contactEmail from Patrons;", function(error, results, fields){
-                if(error){
-                    res.write(JSON.stringify(error));
-                    res.end();
-                }
-                context.patrons = results;
-                complete();
-            });
-        }
+    function getPatronDetails(res, mysql, context, complete){
+        mysql.pool.query("SELECT memberID, favoriteTitle, firstName, lastName, DATE_FORMAT(registerDate, '%m/%d/%Y') as 'registerDate', contactPhone, contactEmail from Patrons;", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.patrons = results;
+            complete();
+        });
+    }
 
     /*Display all books.*/
     router.get('/', function(req, res){

@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
     /*Get loan item data from database*/
     function getLoanItems(res, mysql, context, complete){
-        mysql.pool.query("SELECT li.bookID, l.memberID, CONCAT(p.firstName, ' ', p.lastName) as 'patronName', t.bookTitle, li.dueDate, ls.statusDescription, li.renewalCount FROM LoanItems li INNER JOIN LoanStatus ls ON li.loanStatus = ls.statusID INNER JOIN Loans l ON li.loanID = l.loanID INNER JOIN Patrons p ON l.memberID = p.memberID INNER JOIN Books b ON li.bookID = b.bookID INNER JOIN Titles t ON b.ISBN = t.ISBN", function(error, results, fields){
+        mysql.pool.query("SELECT li.bookID, l.memberID, CONCAT(p.firstName, ' ', p.lastName) as 'patronName', t.bookTitle, DATE_FORMAT(li.dueDate, '%m/%d/%Y') as 'dueDate', ls.statusDescription, li.renewalCount FROM LoanItems li INNER JOIN LoanStatus ls ON li.loanStatus = ls.statusID INNER JOIN Loans l ON li.loanID = l.loanID INNER JOIN Patrons p ON l.memberID = p.memberID INNER JOIN Books b ON li.bookID = b.bookID INNER JOIN Titles t ON b.ISBN = t.ISBN", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -12,7 +12,6 @@ module.exports = function(){
             complete();
         });
     }
-
 
     /*Display all loan items.*/
     router.get('/', function(req, res){
