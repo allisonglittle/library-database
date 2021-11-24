@@ -38,6 +38,9 @@ app.use('/books', require('./books.js'));
 
 app.use('/patrons', require('./patrons.js'));
 
+app.use('/renew_loan', require('./renew_loan.js'));
+
+app.use('/return_book', require('./return_book.js'));
 
 app.use('/create_loan', require('./create_loan.js'));
 

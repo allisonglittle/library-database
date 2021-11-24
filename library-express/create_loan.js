@@ -16,7 +16,7 @@ module.exports = function () {
 
     /* Get Patron info from database*/
     function getPatrons(res, mysql, context, complete) {
-        mysql.pool.query("SELECT p.memberID as 'patronID', p.firstName, p.lastName FROM Patrons p", function (error, results, fields) {
+        mysql.pool.query("SELECT p.memberID as 'patronID', p.firstName, p.lastName FROM Patrons p;", function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
@@ -28,7 +28,7 @@ module.exports = function () {
 
     /*Get book data from database*/
     function getBooks(res, mysql, context, complete) {
-        mysql.pool.query("SELECT b.bookID, b.ISBN, t.bookTitle FROM Books b INNER JOIN Titles t ON b.ISBN = t.ISBN WHERE b.isActive = TRUE AND b.bookID NOT IN (SELECT li.bookID FROM LoanItems li WHERE li.loanStatus <> 3)", function (error, results, fields) {
+        mysql.pool.query("SELECT b.bookID, b.ISBN, t.bookTitle FROM Books b INNER JOIN Titles t ON b.ISBN = t.ISBN WHERE b.isActive = TRUE AND b.bookID NOT IN (SELECT li.bookID FROM LoanItems li WHERE li.loanStatus <> 3);", function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();

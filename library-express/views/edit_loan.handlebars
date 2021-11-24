@@ -13,22 +13,28 @@
                     <th>Due Date</th>
                     <th>Loan Status</th>
                     <th>Renewal Count</th>
-                    <th>Renew</th>
                     <th>Confirm</th>
+                    <th>Renew</th>
+                    <th>Return</th>
                 </tr>
             </thead>
             <tbody>
                 {{#each loanItems}}
                 <tr>
-                    <td>{{loanID}}</td>
-                    <td>{{patronName}}</td>
-                    <td>{{bookID}}</td>
-                    <td>{{bookTitle}}</td>
-                    <td>{{dueDate}}</td>
-                    <td>{{statusDescription}}</td>
-                    <td>{{renewalCount}}</td>
-                    <td><button>Renew</button></td>
-                    <td><button>Submit Changes</button></td>
+                    <form>
+                        <input type="hidden" id="loanID" name="loanID" value={{loanID}}>
+                        <input type="hidden" id="bookID" name="bookID" value={{bookID}}>
+                        <td>{{loanID}}</td>
+                        <td>{{patronName}}</td>
+                        <td>{{bookID}}</td>
+                        <td>{{bookTitle}}</td>
+                        <td>{{dueDate}}</td>
+                        <td>{{statusDescription}}</td>
+                        <td>{{renewalCount}}</td>
+                        <td><button onclick="change_loan"({{loanID}},{{bookID}},{{dueDate}},{{statusDescription}})>Submit Changes</button></td>
+                        <td><button type="submit" formaction="/renew_loan" formmethod="post">Renew</button></td>
+                        <td><button type="submit" formaction="/return_book" formmethod="post">Return</button></td>
+                    </form>
                 </tr>
                 {{/each}}
             </tbody>
