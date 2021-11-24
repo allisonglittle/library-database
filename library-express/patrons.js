@@ -3,7 +3,7 @@ module.exports = function () {
     var router = express.Router();
     /*Get patron data from database*/
     function getPatrons(res, mysql, context, complete) {
-        mysql.pool.query("SELECT p.firstName, p.lastName, p.registerDate, p.contactEmail, p.contactPhone, t.bookTitle FROM Patrons p LEFT JOIN Titles t ON p.favoriteTitle = t.ISBN", function (error, results, fields) {
+        mysql.pool.query("SELECT p.firstName, p.lastName, DATE_FORMAT(p.registerDate, '%m/%d/%Y') as 'registerDate', p.contactEmail, p.contactPhone, t.bookTitle FROM Patrons p LEFT JOIN Titles t ON p.favoriteTitle = t.ISBN", function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
@@ -41,7 +41,7 @@ module.exports = function () {
 
     /* Display patrons filtered by first name */
     function getPatronsByFirstName(req, res, mysql, context, complete) {
-        var query = "SELECT p.firstName, p.lastName, p.registerDate, p.contactEmail, p.contactPhone, t.bookTitle FROM Patrons p LEFT JOIN Titles t ON p.favoriteTitle = t.ISBN WHERE p.firstName LIKE '%?%'";
+        var query = "SELECT p.firstName, p.lastName, DATE_FORMAT(p.registerDate, '%d/%m/%Y') as 'registerDate', p.contactEmail, p.contactPhone, t.bookTitle FROM Patrons p LEFT JOIN Titles t ON p.favoriteTitle = t.ISBN WHERE p.firstName LIKE '%?%'";
         console.log(req.params)
         var inserts = [req.params.filterFName]
         mysql.pool.query(query, inserts, function (error, results, fields) {

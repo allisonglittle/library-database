@@ -11,8 +11,7 @@
                         {{/each}}
                     </select></p>
                 <p><label for="books">Choose the books: </label>
-                    {{!-- <select name="books" id="bookID" multiple> --}}
-                    <select name="bookID" id="bookID">
+                    <select name="books" id="bookID" multiple>
                         {{#each books}}
                         <option value="{{bookID}}">{{bookID}} - {{bookTitle}}</option>
                         {{/each}}
@@ -24,14 +23,7 @@
                         document.write(newDate.toDateString());
                     </script></b>
                 </p>
-
-                {{!-- <input type="submit" value="Create Loan"> --}}
                 <input type="submit" value="Create Loan">
-
-                {{!-- <button type="submit">
-                    Create Loan
-                </button> --}}
-
                 <button>
                     Reset
                 </button>
