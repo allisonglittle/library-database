@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
     /*Get title data from database*/
     function getTitles(res, mysql, context, complete){
-        mysql.pool.query("SELECT ISBN, bookTitle, author, publisher, DATE_FORMAT(datePublished, \"%d/%m/%Y\") as 'datePublished' FROM Titles", function(error, results, fields){
+        mysql.pool.query("SELECT ISBN, bookTitle, author, publisher, DATE_FORMAT(datePublished, \"%m/%d/%Y\") as 'datePublished' FROM Titles", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();

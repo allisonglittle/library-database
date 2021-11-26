@@ -38,13 +38,14 @@ app.use('/books', require('./books.js'));
 
 app.use('/patrons', require('./patrons.js'));
 
+app.use('/loan_items', require('./loanitems.js'));
 app.use('/renew_loan', require('./renew_loan.js'));
-
 app.use('/return_book', require('./return_book.js'));
+app.use('/delete_loan', require('./delete_loan.js'));
+app.use('/edit_loan', require('./edit_loan.js'));
 
 app.use('/create_loan', require('./create_loan.js'));
 
-app.use('/edit_loan', require('./loanitems.js'));
 app.use('/loan_status', require('./loanstatus.js'));
 /*  
 Citation for the following function:
