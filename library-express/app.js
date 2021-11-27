@@ -48,6 +48,7 @@ app.use('/edit_loan_details', require('./edit_loan_details'));
 app.use('/create_loan', require('./create_loan.js'));
 
 app.use('/loan_status', require('./loanstatus.js'));
+app.use('/delete_loan_status', require('./delete_loan_status'));
 /*  
 Citation for the following function:
 Date: 03NOV21
