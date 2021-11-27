@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
     <body>
-        <h1>Loan Items</h1>
+        <h1>Library Inventory Management</h1>
         <table>
-            <caption>Renewing a book will automatically extend the due date by two weeks.</caption>
+            <caption>Edit Loan Details</caption>
             <thead>
-                <tr>
-                    <th>Loan ID</th>
-                    <th>Patron</th>
-                    <th>Book ID</th>
-                    <th>Title</th>
-                    <th>Due Date</th>
-                    <th>Loan Status</th>
-                    <th>Renewal Count</th>
-                    <th>Renew</th>
-                    <th>Confirm</th>
-                </tr>
+                <th>Loan ID</th>
+                <th>Patron</th>
+                <th>Book ID</th>
+                <th>Title</th>
+                <th>Loan Status</th>
+                <th>Due Date</th>
+                <th>Renewal Count</th>
             </thead>
             <tbody>
-                {{#each loanItems}}
                 <tr>
-                    <td>{{loanID}}</td>
-                    <td>{{patronName}}</td>
-                    <td>{{bookID}}</td>
-                    <td>{{bookTitle}}</td>
-                    <td>{{dueDate}}</td>
-                    <td>{{statusDescription}}</td>
-                    <td>{{renewalCount}}</td>
-                    <td><button>Renew</button></td>
-                    <td><button>Submit Changes</button></td>
+                    <form action="/edit_loan_details" method="post">
+                        <input type="hidden" id="loanID" name="loanID" value={{loanItems.loanID}}>
+                        <input type="hidden" id="bookID" name="bookID" value={{loanItems.bookID}}>
+                        <td>{{loanItems.loanID}}</td>
+                        <td>{{loanItems.patronName}}</td>
+                        <td>{{loanItems.bookID}}</td>
+                        <td>{{loanItems.bookTitle}}</td>
+                        <td><select id="loanStatus" name="loanStatus">
+                            <option value="{{loanItems.currentStatusID}}">{{loanItems.currentStatusDescription}}</option>
+                            {{#each statuses}}
+                                <option value="{{statusID}}">{{statusDescription}}</option>
+                            {{/each}}
+                        </select></td>
+                        <td><input type="date" id="dueDate" name="dueDate" value="{{loanItems.dueDate}}"></td>
+                        <td><input type="number" id="renewalCount" name="renewalCount" min="0" value="{{loanItems.renewalCount}}"></td>
+                        <td><input type="submit" value="Update"></td>
+                    </form>
                 </tr>
-                {{/each}}
             </tbody>
         </table>
     </body>

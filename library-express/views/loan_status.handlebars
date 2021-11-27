@@ -6,20 +6,25 @@
             <h1>Add loan status</h1>
             <label>Status: </label>
             <input type="text" name="statusDescription" required><br>
-            <p><input type="submit" value="Submit"></p>
+            <p><input type="submit" value="Create Status"></p>
         </form>
         <table>
             <caption>Statuses</caption>
             <thead>
                 <th>Status ID</th>
                 <th>Status Name</th>
+                <th>Delete</th>
             </thead>
             <tbody>
                 {{#each statuses}}
-                <tr>
-                    <td>{{statusID}}</td>
-                    <td>{{statusDescription}}</td>
-                </tr>
+                    <form action="/delete_loan_status" method="post" onsubmit="return confirm('Deleting this atatus will also delete all loans with that status.')">
+                        <tr>
+                            <input type="hidden" id="statusID" name="statusID" value={{statusID}}>
+                            <td>{{statusID}}</td>
+                            <td>{{statusDescription}}</td>
+                            <td><input type="submit" value="Delete"/></td>
+                        </tr>
+                    </form>
                 {{/each}}
             </tbody>
         </table>
