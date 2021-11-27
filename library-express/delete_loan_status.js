@@ -6,7 +6,6 @@ module.exports = function () {
     function deleteLoans(res, mysql, statusID, complete){
         var sql = "DELETE FROM LoanItems WHERE loanStatus = " + statusID + ";";
         mysql.pool.query(sql, function(error, results, fields){
-            console.log(sql);
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -19,7 +18,6 @@ module.exports = function () {
     function deleteStatus(res, mysql, statusID, complete){
         var sql = "DELETE FROM LoanStatus WHERE statusID = " + statusID + ";";
         mysql.pool.query(sql, function(error, results, fields){
-            console.log(sql);
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -32,7 +30,6 @@ module.exports = function () {
     router.post('/', function (req, res) {
         var mysql = req.app.get('mysql');
         var callbackCount = 0;
-        console.log(req.body)
         var statusID = req.body.statusID;
         deleteLoans(res, mysql, statusID, complete);
         deleteStatus(res, mysql, statusID, complete);        

@@ -56,7 +56,6 @@ module.exports = function () {
 
     /*Create a new loan.*/
     router.post('/', function (req, res) {
-        console.log(req.body)
         var mysql = req.app.get('mysql');
         var sqlLoan = "INSERT INTO Loans (memberID, loanDate) VALUES (?, CURRENT_DATE());";
         var sqlLoanItems1 = "INSERT INTO LoanItems (loanID, bookID, loanStatus, dueDate, renewalCount) VALUES ";

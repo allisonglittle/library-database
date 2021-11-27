@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <body>
-        <h1>Loan Items</h1>
+        <h1>Library Inventory Management</h1>
+        <h2>Loan Items</h2>
         <table>
-            <caption>Renewing a book will automatically extend the due date by two weeks.</caption>
+            <h4>Renewing a book will automatically extend the due date by two weeks.</h4>
             <thead>
                 <tr>
                     <th>Loan ID</th>
@@ -35,7 +36,7 @@
                         <td><button type="submit" formaction="/renew_loan" formmethod="post">Renew</button></td>
                         <td><button type="submit" formaction="/return_book" formmethod="post">Return</button></td>
                         <td><button type="submit" formaction="/edit_loan" formmethod="post">Edit</button></td>
-                        <td><button type="submit" formaction="/delete_loan" formmethod="post">Delete</button></td>
+                        <td><button type="submit" formaction="/delete_loan_item" formmethod="post">Delete</button></td>
                     </form>
                 </tr>
                 {{/each}}
