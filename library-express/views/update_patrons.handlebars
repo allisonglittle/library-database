@@ -1,0 +1,28 @@
+<main>
+    <h1>Update Patron</h1>
+    <form id="updatePatron" action="/patrons" method="post">
+        <p><label for="firstName">First Name:</label><br>
+            <input type="text" name="firstName" value ="{{patron.firstName}}" required>
+        </p>
+        <p><label for="lastName">Last Name:</label><br>
+            <input type="text" name="lastName" value="{{patron.lastName}}" required>
+        </p>
+        <p><label for="registerDate">Registered Date:</label><br>
+            <input type="date" name="registerDate" value="{{patron.registerDate}}">
+        </p>
+        <p><label for="contactEmail">Email:</label><br>
+            <input type="email" name="contactEmail" value="{{patron.contactEmail}}">
+        </p>
+        <p><label for="contactPhone">Phone:</label><br>
+            <input type="tel" name="contactPhone" value="{{patron.contactPhone}}">
+        </p>
+        <p><label for="favoriteTitle">Favorite Book:</label><br>
+            <select name="favoriteTitle" id="title_selector">
+                {{#each titles}}
+                <option value="{{ISBN}}">{{ISBN}} - {{bookTitle}}</option>
+                {{/each}}
+            </select>
+        </p>
+        <p><input type="submit" value="Submit"></p>
+    </form>
+</main>

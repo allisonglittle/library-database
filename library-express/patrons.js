@@ -3,7 +3,7 @@ module.exports = function () {
     var router = express.Router();
     /*Get patron data from database*/
     function getPatrons(res, mysql, context, complete) {
-        mysql.pool.query("SELECT p.firstName, p.lastName, DATE_FORMAT(p.registerDate, '%m/%d/%Y') as 'registerDate', p.contactEmail, p.contactPhone, t.bookTitle FROM Patrons p LEFT JOIN Titles t ON p.favoriteTitle = t.ISBN", function (error, results, fields) {
+        mysql.pool.query("SELECT p.memberID AS id, p.firstName, p.lastName, DATE_FORMAT(p.registerDate, '%m/%d/%Y') as 'registerDate', p.contactEmail, p.contactPhone, t.bookTitle FROM Patrons p LEFT JOIN Titles t ON p.favoriteTitle = t.ISBN", function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
@@ -53,6 +53,21 @@ module.exports = function () {
             complete();
         });
     }
+
+    /* Display all patron information for a specified patron ID */
+    function getPatron(res, mysql, context, id, complete) {
+        var sql = "SELECT memberID as id, firstName, lastName, DATE_FORMAT(registerDate, '%Y-%m-%d') as 'registerDate', contactEmail, contactPhone, favoriteTitle FROM Patrons WHERE memberID = ?";
+        var inserts = [id];
+        mysql.pool.query(sql, inserts, function (error, results, fields) {
+            if (error) {
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.patron = results[0];
+            complete();
+        });
+    }
+
     /* Adds a patron, redirects to the patron page after adding */
     router.post('/', function (req, res) {
         console.log(req.body);
@@ -85,5 +100,49 @@ module.exports = function () {
             }
         }
     });
+
+
+
+    /* Display one patron for the specific purpose of updating people */
+
+    router.get('/:id', function (req, res) {
+        callbackCount = 0;
+        var context = {};
+        // context.jsscripts = ["selectTitle.js", "updatePatron.js"];
+        var mysql = req.app.get('mysql');
+        getPatron(res, mysql, context, req.params.id, complete);
+        getTitles(res, mysql, context, complete);
+        function complete() {
+            callbackCount++;
+            if (callbackCount >= 2) {
+                res.render('update_patrons', context);
+            }
+
+        }
+    });
+
+
+    /* The URI that update data is sent to in order to update a person */
+    router.put('/:id', function (req, res) {
+        var mysql = req.app.get('mysql');
+        console.log(req.body)
+        console.log(req.params.id)
+        var sql = "UPDATE Patrons SET firstName = ?, lastName = ?, registerDate = ?, contactPhone = ?, contactEmail = ?, favoriteTitle = ? WHERE memberID = ?";
+        var inserts = [req.body.firstName, req.body.lastName, req.body.registerDate, req.body.contactPhone, req.body.contactEmail, req.body.favoriteTitle, req.params.id];
+        sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
+            if (error) {
+                console.log(error)
+                res.write(JSON.stringify(error));
+                res.end();
+            } else {
+                res.status(200);
+                res.end();
+            }
+        });
+    });
     return router;
+
+
+
 }();
+
