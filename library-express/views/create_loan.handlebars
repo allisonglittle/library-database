@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <body>
+        <h1>Library Inventory Management</h1>
         <div>
             <h2>Create a Loan</h2>
             <form id="addLoan" action="/create_loan" method="post">
@@ -30,10 +31,11 @@
             </form>
         </div>
         <div>
-            <h1>Loans</h1>
+            <h2>Loans</h2>
             <table>
                 <thead>
                     <tr>
+                        <th>Loan ID</th>
                         <th>Patron</th>
                         <th>Loan Date</th>
                         <th>Book Count</th>
@@ -43,12 +45,14 @@
                 <tbody>
                     {{#each loans}}
                     <tr>
-                        <td>{{patronName}}</td>
-                        <td>{{loanDate}}</td>
-                        <td>{{bookCount}}</td>
-                        <td>
-                            <button>Delete</button>
-                        </td>
+                        <form>
+                            <td>{{loanID}}</td>
+                            <td>{{patronName}}</td>
+                            <td>{{loanDate}}</td>
+                            <td>{{bookCount}}</td>
+                            <input type="hidden" id="loanID" name="loanID" value={{loanID}}>
+                            <td><button type="submit" formaction="/delete_loan" formmethod="post">Delete</button></td>
+                        </form>
                     </tr>
                     {{/each}}
                 </tbody>

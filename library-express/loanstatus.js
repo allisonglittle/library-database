@@ -29,7 +29,6 @@ module.exports = function(){
 
     /* Adds a loan status, redirects to the title page after adding */
     router.post('/', function(req, res){
-        console.log(req.body);
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO LoanStatus (statusDescription) VALUES (?)";
         var inserts = [req.body.statusDescription];

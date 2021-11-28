@@ -4,7 +4,6 @@ module.exports = function () {
 
     /* Return a loan. */
     router.post('/', function (req, res) {
-        console.log(req.body);
         var mysql = req.app.get('mysql');
         var sql = "UPDATE LoanItems li SET li.loanStatus = 3 WHERE li.loanID = ? AND li.bookID = ?;";
         var inserts = [req.body.loanID, req.body.bookID];
@@ -14,7 +13,7 @@ module.exports = function () {
                 res.write(JSON.stringify(error));
                 res.end();
             } else {
-                res.redirect('/edit_loan');
+                res.redirect('/loan_items');
             }
         });
     });
