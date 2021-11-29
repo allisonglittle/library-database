@@ -62,8 +62,12 @@ module.exports = function () {
         var sqlLoanItems2 = "((SELECT loanID FROM Loans WHERE memberID = ";
         var sqlLoanItems3 = " and loanDate = CURRENT_DATE() order by loanID desc LIMIT 1), ";
         var sqlLoanItems4 = ", 1, DATE_ADD(CURRENT_DATE(), INTERVAL 14 DAY), 0)";
-        var books = req.body.books;
         var memberID = req.body.patronID;
+        if (Array.isArray(req.body.books)) {
+            var books = req.body.books;
+        } else {
+            var books = [req.body.books];
+        }
         books.forEach(function(item, index, array) {
             if (index > 0) {
                 sqlLoanItems1 += ",";
