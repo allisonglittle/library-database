@@ -28,6 +28,7 @@ module.exports = function () {
     router.get('/', function (req, res) {
         var callbackCount = 0;
         var context = {};
+        context.jsscripts = ["searchpatrons.js"];
         var mysql = req.app.get('mysql');
         getPatrons(res, mysql, context, complete);
         getTitles(res, mysql, context, complete);
@@ -39,12 +40,29 @@ module.exports = function () {
         }
     });
 
+
     /* Display patrons filtered by first name */
     function getPatronsByFirstName(req, res, mysql, context, complete) {
-        var query = "SELECT p.firstName, p.lastName, DATE_FORMAT(p.registerDate, '%d/%m/%Y') as 'registerDate', p.contactEmail, p.contactPhone, t.bookTitle FROM Patrons p LEFT JOIN Titles t ON p.favoriteTitle = t.ISBN WHERE p.firstName LIKE '%?%'";
+        var query = "SELECT p.memberID as id, p.firstName, p.lastName, DATE_FORMAT(p.registerDate, '%d/%m/%Y') as 'registerDate', p.contactEmail, p.contactPhone, t.bookTitle FROM Patrons p LEFT JOIN Titles t ON p.favoriteTitle = t.ISBN WHERE p.firstName LIKE '%?%'";
         console.log(req.params)
         var inserts = [req.params.filterFName]
         mysql.pool.query(query, inserts, function (error, results, fields) {
+            if (error) {
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.patrons = results;
+            complete();
+        });
+    }
+
+    /* Find people whose fname starts with a given string in the req */
+    function getPatronsWithNameLike(req, res, mysql, context, complete) {
+        //sanitize the input as well as include the % character
+        var query = "SELECT p.memberID as id, p.firstName, p.lastName, DATE_FORMAT(p.registerDate, '%d/%m/%Y') as 'registerDate', p.contactEmail, p.contactPhone, t.bookTitle FROM Patrons p LEFT JOIN Titles t ON p.favoriteTitle = t.ISBN WHERE p.firstName LIKE '%'" + mysql.pool.escape(req.params.s + '%');
+        console.log(query)
+
+        mysql.pool.query(query, function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
@@ -101,14 +119,12 @@ module.exports = function () {
         }
     });
 
-
-
     /* Display one patron for the specific purpose of updating people */
 
     router.get('/:id', function (req, res) {
         callbackCount = 0;
         var context = {};
-        // context.jsscripts = ["selectTitle.js", "updatePatron.js"];
+        context.jsscripts = ["selectTitle.js", "updatePatron.js"];
         var mysql = req.app.get('mysql');
         getPatron(res, mysql, context, req.params.id, complete);
         getTitles(res, mysql, context, complete);
