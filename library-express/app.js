@@ -19,6 +19,7 @@ var db = require('./helpers/db-connector');
 */
 // app.use(express.static(__dirname + "/public"));
 app.use('/', express.static('public'));
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Handlebars setting
 app.engine('handlebars', handlebars.engine);

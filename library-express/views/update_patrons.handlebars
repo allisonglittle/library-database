@@ -1,8 +1,9 @@
 <main>
     <h1>Update Patron</h1>
-    <form id="updatePatron" action="/patrons" method="post">
+    <form id="updatePatron" action="/patrons/{{patron.id}}" method="post">
+        <input type="hidden" id="id" name="id" value={{patron.id}}>
         <p><label for="firstName">First Name:</label><br>
-            <input type="text" name="firstName" value ="{{patron.firstName}}" required>
+            <input type="text" name="firstName" value="{{patron.firstName}}" required>
         </p>
         <p><label for="lastName">Last Name:</label><br>
             <input type="text" name="lastName" value="{{patron.lastName}}" required>
@@ -17,7 +18,7 @@
             <input type="tel" name="contactPhone" value="{{patron.contactPhone}}">
         </p>
         <p><label for="favoriteTitle">Favorite Book:</label><br>
-            <select name="favoriteTitle" id="title_selector">
+            <select name="favoriteTitle" id="title_selector" value="{{patron.favoriteTitle}}">
                 {{#each titles}}
                 <option value="{{ISBN}}">{{ISBN}} - {{bookTitle}}</option>
                 {{/each}}
@@ -26,5 +27,5 @@
         <p><input type="submit" value="Submit"></p>
     </form>
     <button onclick="updatePatron({{patron.id}})">Update</button>
-    <script defer>selectTitle({{patron.favoriteTitle}});</script>
+    <script defer>selectTitle({{ patron.favoriteTitle }});</script>
 </main>
