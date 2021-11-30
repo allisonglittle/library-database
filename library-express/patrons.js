@@ -138,25 +138,6 @@ module.exports = function () {
     });
 
 
-    // /* The URI that update data is sent to in order to update a person */
-    // router.put('/:id', function (req, res) {
-    //     var mysql = req.app.get('mysql');
-    //     console.log(req.body)
-    //     console.log(req.params.id)
-    //     var sql = "UPDATE Patrons SET firstName = ?, lastName = ?, registerDate = ?, contactPhone = ?, contactEmail = ?, favoriteTitle = ? WHERE memberID = ?";
-    //     var inserts = [req.body.firstName, req.body.lastName, req.body.registerDate, req.body.contactPhone, req.body.contactEmail, req.body.favoriteTitle, req.params.id];
-    //     sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
-    //         if (error) {
-    //             console.log(error)
-    //             res.write(JSON.stringify(error));
-    //             res.end();
-    //         } else {
-    //             res.status(200);
-    //             res.end();
-    //         }
-    //     });
-    // });
-
     /* Testing new way to update patron. */
     router.post('/:id', function (req, res) {
         var mysql = req.app.get('mysql');
