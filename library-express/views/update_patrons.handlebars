@@ -26,5 +26,6 @@
         <p><input type="submit" value="Submit"></p>
     </form>
     <button onclick="updatePatron({{patron.id}})">Update</button>
-    <script defer>selectTitle({{ patron.favoriteTitle }});</script>
+    <script src="../public/selectTitle.js"></script>
+    <script defer>selectTitle({{patron.favoriteTitle}});</script>
 </main>
