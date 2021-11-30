@@ -143,7 +143,7 @@ module.exports = function () {
         var mysql = req.app.get('mysql');
         console.log(req.body)
         var sql = "UPDATE Patrons SET firstName = ?, lastName = ?, registerDate = ?, contactPhone = ?, contactEmail = ?, favoriteTitle = ? WHERE memberID = ?";
-        var inserts = [req.body.firstName, req.body.lastName, req.body.registerDate, req.body.contactPhone, req.body.contactEmail, req.body.favoriteTitle, req.body.id];
+        var inserts = [req.body.firstName, req.body.lastName, req.body.registerDate, req.body.contactPhone, req.body.contactEmail, req.body.favoriteTitle, req.params.id];
         sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
             if (error) {
                 console.log(JSON.stringify(error));
