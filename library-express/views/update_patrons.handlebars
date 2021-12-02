@@ -25,6 +25,12 @@
         </p>
         <p><input type="submit" value="Submit"></p>
     </form>
-    <script src="../public/selectTitle.js"></script>
-    <script defer>selectTitle({{patron.favoriteTitle}});</script>
+    {{!--
+    <script src="/public/js/selectTitle.js"></script> --}}
+    <script>
+        function selectTitle(ISBN) {
+            $("#title-selector").val(ISBN);
+        }
+    </script>
+    <script defer>selectTitle({{ patron.favoriteTitle }});</script>
 </main>

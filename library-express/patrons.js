@@ -124,7 +124,7 @@ module.exports = function () {
     router.get('/:id', function (req, res) {
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["selectTitle.js", "updatePatron.js"];
+        context.jsscripts = ["selectTitle.js"];
         var mysql = req.app.get('mysql');
         getPatron(res, mysql, context, req.params.id, complete);
         getTitles(res, mysql, context, complete);
@@ -138,7 +138,7 @@ module.exports = function () {
     });
 
 
-    /* Testing new way to update patron. */
+    /* Update patron and redirect to patrons page. */
     router.post('/:id', function (req, res) {
         var mysql = req.app.get('mysql');
         console.log(req.body)
