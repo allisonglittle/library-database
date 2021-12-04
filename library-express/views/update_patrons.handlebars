@@ -19,7 +19,8 @@
             <input type="tel" name="contactPhone" value="{{patron.contactPhone}}">
         </p>
         <p><label for="favoriteTitle">Favorite Book:</label><br>
-            <select name="favoriteTitle" id="title-selector" >
+            <select name="favoriteTitle" id="title-selector">
+                <option value=null>--</option>
                 {{#each titles}}
                 <option value="{{this.ISBN}}">{{this.ISBN}} - {{this.bookTitle}}</option>
                 {{/each}}

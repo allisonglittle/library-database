@@ -91,7 +91,13 @@ module.exports = function () {
         console.log(req.body);
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO Patrons (firstName, lastName, registerDate, contactEmail, contactPhone, favoriteTitle) VALUES (?, ?, ?, ?, ?, ?)";
-        var inserts = [req.body.firstName, req.body.lastName, req.body.registerDate, req.body.contactEmail, req.body.contactPhone, req.body.favoriteTitle];
+        // checks if the favorite title was a null value
+        var inserts = [];
+        if (req.body.favoriteTitle == 'null') {
+            inserts = [req.body.firstName, req.body.lastName, req.body.registerDate, req.body.contactEmail, req.body.contactPhone, null];
+        } else {
+            inserts = [req.body.firstName, req.body.lastName, req.body.registerDate, req.body.contactEmail, req.body.contactPhone, req.body.favoriteTitle];
+        }
         sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
             if (error) {
                 console.log(JSON.stringify(error));
@@ -142,8 +148,14 @@ module.exports = function () {
     router.post('/:id', function (req, res) {
         var mysql = req.app.get('mysql');
         console.log(req.body)
-        var sql = "UPDATE Patrons SET firstName = ?, lastName = ?, registerDate = ?, contactPhone = ?, contactEmail = ?, favoriteTitle = ? WHERE memberID = ?";
-        var inserts = [req.body.firstName, req.body.lastName, req.body.registerDate, req.body.contactPhone, req.body.contactEmail, req.body.favoriteTitle, req.params.id];
+        var sql = "UPDATE Patrons SET firstName = ?, lastName = ?, registerDate = ?, contactEmail = ?, contactPhone = ?, favoriteTitle = ? WHERE memberID = ?";
+        // checks if the favorite title was a null value
+        var inserts = [];
+        if (req.body.favoriteTitle == 'null') {
+            inserts = [req.body.firstName, req.body.lastName, req.body.registerDate, req.body.contactEmail, req.body.contactPhone, null, req.params.id];
+        } else {
+            inserts = [req.body.firstName, req.body.lastName, req.body.registerDate, req.body.contactEmail, req.body.contactPhone, req.body.favoriteTitle, req.params.id];
+        }
         sql = mysql.pool.query(sql, inserts, function (error, results, fields) {
             if (error) {
                 console.log(JSON.stringify(error));

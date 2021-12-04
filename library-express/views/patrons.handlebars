@@ -19,6 +19,7 @@
         </p>
         <p><label for="favoriteTitle">Favorite Book:</label><br>
             <select name="favoriteTitle">
+                <option value=null selected>--</option>
                 {{#each titles}}
                 <option value="{{ISBN}}">{{ISBN}} - {{bookTitle}}</option>
                 {{/each}}
