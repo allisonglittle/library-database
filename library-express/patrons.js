@@ -124,13 +124,13 @@ module.exports = function () {
     router.get('/:id', function (req, res) {
         callbackCount = 0;
         var context = {};
-        context.jsscripts = ["selectTitle.js"];
         var mysql = req.app.get('mysql');
         getPatron(res, mysql, context, req.params.id, complete);
         getTitles(res, mysql, context, complete);
         function complete() {
             callbackCount++;
             if (callbackCount >= 2) {
+                console.log(context);
                 res.render('update_patrons', context);
             }
 

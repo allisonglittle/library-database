@@ -1,4 +1,6 @@
 <main>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <h1>Update Patron</h1>
     <form id="updatePatron" action="/patrons/{{patron.id}}" method="post">
         <p><label for="firstName">First Name:</label><br>
@@ -17,16 +19,14 @@
             <input type="tel" name="contactPhone" value="{{patron.contactPhone}}">
         </p>
         <p><label for="favoriteTitle">Favorite Book:</label><br>
-            <select name="favoriteTitle" id="title_selector" value="{{patron.favoriteTitle}}">
+            <select name="favoriteTitle" id="title-selector" >
                 {{#each titles}}
-                <option value="{{ISBN}}">{{ISBN}} - {{bookTitle}}</option>
+                <option value="{{this.ISBN}}">{{this.ISBN}} - {{this.bookTitle}}</option>
                 {{/each}}
             </select>
         </p>
         <p><input type="submit" value="Submit"></p>
     </form>
-    {{!--
-    <script src="/public/js/selectTitle.js"></script> --}}
     <script>
         function selectTitle(ISBN) {
             $("#title-selector").val(ISBN);
