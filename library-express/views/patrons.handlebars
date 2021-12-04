@@ -11,7 +11,7 @@
             <input type="text" name="lastName" required>
         </p>
         <p><label for="registerDate">Registered Date:</label><br>
-            <input type="date" name="registerDate">
+            <input type="date" name="registerDate" id="registerDate">
         </p>
         <p><label for="contactEmail">Email:</label><br>
             <input type="email" name="contactEmail">
@@ -78,8 +78,14 @@
         }</script>
     <script type="text/javascript">
         document.getElementById("redirectPatrons").onclick = function () {
-            {{!-- location.href = "/patrons"; --}}
             window.location.href = "/patrons";
         };
     </script>
+        <script>
+        function todayDate() {
+            let today = new Date().toISOString().slice(0, 10);
+            $("#registerDate").val(today);
+        }
+    </script>
+    <script defer>todayDate();</script>
 </div>
