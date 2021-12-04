@@ -1,4 +1,6 @@
 <div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <h1>Library Inventory Management</h1>
     <h2>Add a New Patron</h2>
     <form id="addPatron" action="/patrons" method="post">
@@ -36,6 +38,7 @@
         <input id='first_name_search_string' type='text' name='first_name_search_string' value=''>
         <input type="button" value="Search" onclick="searchPatronsByFirstName()">
     </form>
+    <button id="redirectPatrons">Clear</button>
 </div>
 </div>
 <div>
@@ -67,4 +70,16 @@
             {{/each}}
         </tbody>
     </table>
+    <script>function searchPatronsByFirstName() {
+            //get the first name 
+            var first_name_search_string = document.getElementById('first_name_search_string').value
+            //construct the URL and redirect to it
+            window.location = '/patrons/search/' + encodeURI(first_name_search_string)
+        }</script>
+    <script type="text/javascript">
+        document.getElementById("redirectPatrons").onclick = function () {
+            {{!-- location.href = "/patrons"; --}}
+            window.location.href = "/patrons";
+        };
+    </script>
 </div>

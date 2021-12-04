@@ -59,7 +59,7 @@ module.exports = function () {
     /* Find people whose fname starts with a given string in the req */
     function getPatronsWithNameLike(req, res, mysql, context, complete) {
         //sanitize the input as well as include the % character
-        var query = "SELECT p.memberID as id, p.firstName, p.lastName, DATE_FORMAT(p.registerDate, '%d/%m/%Y') as 'registerDate', p.contactEmail, p.contactPhone, t.bookTitle FROM Patrons p LEFT JOIN Titles t ON p.favoriteTitle = t.ISBN WHERE p.firstName LIKE '%'" + mysql.pool.escape(req.params.s + '%');
+        var query = "SELECT p.memberID as id, p.firstName, p.lastName, DATE_FORMAT(p.registerDate, '%d/%m/%Y') as 'registerDate', p.contactEmail, p.contactPhone, t.bookTitle FROM Patrons p LEFT JOIN Titles t ON p.favoriteTitle = t.ISBN WHERE p.firstName LIKE " + mysql.pool.escape(req.params.s + '%');
         console.log(query)
 
         mysql.pool.query(query, function (error, results, fields) {
@@ -114,12 +114,13 @@ module.exports = function () {
     router.get('/search/:s', function (req, res) {
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["searchpatrons.js"];
+        // context.jsscripts = ["searchpatrons.js"];
         var mysql = req.app.get('mysql');
         getPatronsWithNameLike(req, res, mysql, context, complete);
+        getTitles(res, mysql, context, complete);
         function complete() {
             callbackCount++;
-            if (callbackCount >= 1) {
+            if (callbackCount >= 2) {
                 res.render('patrons', context);
             }
         }
