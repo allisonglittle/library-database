@@ -40,22 +40,6 @@ module.exports = function () {
         }
     });
 
-
-    /* Display patrons filtered by first name */
-    function getPatronsByFirstName(req, res, mysql, context, complete) {
-        var query = "SELECT p.memberID as id, p.firstName, p.lastName, DATE_FORMAT(p.registerDate, '%d/%m/%Y') as 'registerDate', p.contactEmail, p.contactPhone, t.bookTitle FROM Patrons p LEFT JOIN Titles t ON p.favoriteTitle = t.ISBN WHERE p.firstName LIKE '%?%'";
-        console.log(req.params)
-        var inserts = [req.params.filterFName]
-        mysql.pool.query(query, inserts, function (error, results, fields) {
-            if (error) {
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.patrons = results;
-            complete();
-        });
-    }
-
     /* Find people whose fname starts with a given string in the req */
     function getPatronsWithNameLike(req, res, mysql, context, complete) {
         //sanitize the input as well as include the % character
@@ -104,6 +88,7 @@ module.exports = function () {
                 res.write(JSON.stringify(error));
                 res.end();
             } else {
+                res.status(200);
                 res.redirect('/patrons');
             }
         });

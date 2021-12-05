@@ -13,11 +13,6 @@
 </form>
 <br>
 <div>
-    <form>
-        <label>Search by Title:
-            <input type="text" />
-        </label>
-    </form>
     <table>
         <caption>Titles</caption>
         <thead>
@@ -25,7 +20,7 @@
             <th>ISBN</th>
             <th>Title</th>
             <th>Date Purchased</th>
-            <th>Is Active?</th>
+            <th>Active Item</th>
         </thead>
         <tbody>
             {{#each books}}
@@ -34,7 +29,23 @@
                 <td>{{ISBN}}</td>
                 <td>{{bookTitle}}</td>
                 <td>{{purchaseDate}}</td>
-                <td>{{isActive}}</td>
+                <td>{{#if isActive}}
+                    Yes
+                    {{else}}
+                    No
+                    {{/if}}
+                </td>
+                <td>
+                    <form action="/books/{{bookID}}" method="post">
+                        {{#if isActive}}
+                        <input type="hidden" name="activeStatus" value=0>
+                        <button type="submit">Set to Inactive</button>
+                        {{else}}
+                        <input type="hidden" name="activeStatus" value=1>
+                        <button type="submit">Set to Active</button>
+                        {{/if}}
+                    </form>
+                </td>
             </tr>
             {{/each}}
         </tbody>

@@ -15,36 +15,12 @@ module.exports = function(){
 
     /*Get book data from database*/
     function getBooks(res, mysql, context, complete){
-        mysql.pool.query("SELECT b.bookID, b.ISBN, t.bookTitle, DATE_FORMAT(b.purchaseDate, '%m/%d/%Y') as 'purchaseDate', CASE WHEN b.isActive = 1 THEN 'True' ELSE 'False' END AS 'isActive' FROM Books b INNER JOIN Titles t ON b.ISBN = t.ISBN;", function(error, results, fields){
+        mysql.pool.query("SELECT b.bookID, b.ISBN, t.bookTitle, DATE_FORMAT(b.purchaseDate, '%m/%d/%Y') as 'purchaseDate', b.isActive FROM Books b INNER JOIN Titles t ON b.ISBN = t.ISBN;", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
             context.books = results;
-            complete();
-        });
-    }
-
-    /*Get loan statuses from database*/
-    function getLoanStatuses(res, mysql, context, complete){
-        mysql.pool.query("SELECT statusID as 'statusID', statusDescription as 'statusDescription' FROM LoanStatus;", function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.statuses = results;
-            complete();
-        });
-    }
-
-    /*Get patrons from database*/
-    function getPatronDetails(res, mysql, context, complete){
-        mysql.pool.query("SELECT memberID, favoriteTitle, firstName, lastName, DATE_FORMAT(registerDate, '%m/%d/%Y') as 'registerDate', contactPhone, contactEmail from Patrons;", function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.patrons = results;
             complete();
         });
     }
@@ -59,6 +35,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 2){
+                console.log(context);
                 res.render('books', context);
             }
         }
@@ -80,6 +57,25 @@ module.exports = function(){
             }
         });
 
+    });
+
+    /* Updates the active status of a book */
+    router.post('/:id', function(req, res){
+        console.log(req.body);
+        console.log(req.params);
+        var mysql = req.app.get('mysql');
+        var sql = "UPDATE Books SET isActive = ? WHERE bookID = ?";
+        var inserts = [req.body.activeStatus, req.params.id];
+        sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                console.log(JSON.stringify(error));
+                res.write(JSON.stringify(error));
+                res.end();
+            } else{
+                res.status(200);
+                res.redirect('/books');
+            }
+        });
     });
 
     return router;
