@@ -32,7 +32,12 @@ module.exports = function(){
         console.log(req.body);
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO Titles (ISBN, bookTitle, author, publisher, datePublished) VALUES (?, ?, ?, ?, ?)";
-        var inserts = [req.body.ISBN, req.body.bookTitle, req.body.author, req.body.publisher, req.body.datePublished];
+        // check if the date published should be a null value
+        var datePublished = req.body.datePublished;
+        if (datePublished == '') {
+            datePublished = null;
+        }
+        var inserts = [req.body.ISBN, req.body.bookTitle, req.body.author, req.body.publisher, datePublished];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error));
