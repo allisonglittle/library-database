@@ -18,7 +18,9 @@ var db = require('./helpers/db-connector');
     FUNCTIONS
 */
 // app.use(express.static(__dirname + "/public"));
-app.use('/', express.static('public'));
+// app.use('/', express.static('public'));
+app.use('/static', express.static('public'))
+app.use(express.static('public/css'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Handlebars setting

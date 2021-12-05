@@ -99,7 +99,6 @@ module.exports = function () {
     router.get('/search/:s', function (req, res) {
         var callbackCount = 0;
         var context = {};
-        // context.jsscripts = ["searchpatrons.js"];
         var mysql = req.app.get('mysql');
         getPatronsWithNameLike(req, res, mysql, context, complete);
         getTitles(res, mysql, context, complete);
