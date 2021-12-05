@@ -1,3 +1,6 @@
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+
 <h1>Library Inventory Management</h1>
 <form id="addBook" action="/books" method="post">
     <h2>Add Book</h2>
@@ -50,4 +53,12 @@
             {{/each}}
         </tbody>
     </table>
+    </script>
+    <script>
+        function todayDate() {
+            let today = new Date().toISOString().slice(0, 10);
+            $("#purchaseDate").val(today);
+        }
+    </script>
+    <script defer>todayDate();</script>
 </div>
