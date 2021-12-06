@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
     /*Get title data from database*/
     function getTitles(res, mysql, context, complete){
-        mysql.pool.query("SELECT ISBN, bookTitle, author, publisher, DATE_FORMAT(datePublished, \"%m/%d/%Y\") as 'datePublished' FROM Titles", function(error, results, fields){
+        mysql.pool.query("SELECT ISBN, bookTitle, author, publisher, DATE_FORMAT(datePublished, \"%m/%d/%Y\") as 'datePublished' FROM Titles;", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -31,7 +31,7 @@ module.exports = function(){
     router.post('/', function(req, res){
         console.log(req.body);
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO Titles (ISBN, bookTitle, author, publisher, datePublished) VALUES (?, ?, ?, ?, ?)";
+        var sql = "INSERT INTO Titles (ISBN, bookTitle, author, publisher, datePublished) VALUES (?, ?, ?, ?, ?);";
         // check if the date published should be a null value
         var datePublished = req.body.datePublished;
         if (datePublished == '') {

@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
     /*Get loan statuses from database*/
     function getStatuses(res, mysql, context, complete){
-        mysql.pool.query("SELECT statusID, statusDescription FROM LoanStatus", function(error, results, fields){
+        mysql.pool.query("SELECT statusID, statusDescription FROM LoanStatus;", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -30,7 +30,7 @@ module.exports = function(){
     /* Adds a loan status, redirects to the title page after adding */
     router.post('/', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO LoanStatus (statusDescription) VALUES (?)";
+        var sql = "INSERT INTO LoanStatus (statusDescription) VALUES (?);";
         var inserts = [req.body.statusDescription];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
