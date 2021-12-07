@@ -45,7 +45,7 @@ module.exports = function(){
     router.post('/', function(req, res){
         console.log(req.body);
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO Books (ISBN, purchaseDate, isActive) VALUES (?, ?, ?)";
+        var sql = "INSERT INTO Books (ISBN, purchaseDate, isActive) VALUES (?, ?, ?);";
         var inserts = [req.body.ISBN, req.body.purchaseDate, 1];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
@@ -64,7 +64,7 @@ module.exports = function(){
         console.log(req.body);
         console.log(req.params);
         var mysql = req.app.get('mysql');
-        var sql = "UPDATE Books SET isActive = ? WHERE bookID = ?";
+        var sql = "UPDATE Books SET isActive = ? WHERE bookID = ?;";
         var inserts = [req.body.activeStatus, req.params.id];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){

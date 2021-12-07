@@ -4,7 +4,7 @@ module.exports = function () {
 
     /*Get loan statuses from database*/
     function getStatuses(res, mysql, context, complete){
-        mysql.pool.query("SELECT statusID, statusDescription FROM LoanStatus", function(error, results, fields){
+        mysql.pool.query("SELECT statusID, statusDescription FROM LoanStatus;", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
