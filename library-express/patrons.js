@@ -3,7 +3,7 @@ module.exports = function () {
     var router = express.Router();
     /*Get patron data from database*/
     function getPatrons(res, mysql, context, complete) {
-        mysql.pool.query("SELECT p.memberID AS id, p.firstName, p.lastName, DATE_FORMAT(p.registerDate, '%m/%d/%Y') as 'registerDate', p.contactEmail, p.contactPhone, t.bookTitle FROM Patrons p LEFT JOIN Titles t ON p.favoriteTitle = t.ISBN", function (error, results, fields) {
+        mysql.pool.query("SELECT p.memberID AS id, p.firstName, p.lastName, DATE_FORMAT(p.registerDate, '%m/%d/%Y') as 'registerDate', p.contactEmail, p.contactPhone, t.bookTitle FROM Patrons p LEFT JOIN Titles t ON p.favoriteTitle = t.ISBN;", function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
@@ -15,7 +15,7 @@ module.exports = function () {
 
     /*Get title data from database*/
     function getTitles(res, mysql, context, complete) {
-        mysql.pool.query("SELECT ISBN, bookTitle FROM Titles", function (error, results, fields) {
+        mysql.pool.query("SELECT ISBN, bookTitle FROM Titles;", function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
@@ -74,7 +74,7 @@ module.exports = function () {
     router.post('/', function (req, res) {
         console.log(req.body);
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO Patrons (firstName, lastName, registerDate, contactEmail, contactPhone, favoriteTitle) VALUES (?, ?, ?, ?, ?, ?)";
+        var sql = "INSERT INTO Patrons (firstName, lastName, registerDate, contactEmail, contactPhone, favoriteTitle) VALUES (?, ?, ?, ?, ?, ?);";
         // checks if the favorite title was a null value
         var inserts = [];
         if (req.body.favoriteTitle == 'null') {
@@ -133,7 +133,7 @@ module.exports = function () {
     router.post('/:id', function (req, res) {
         var mysql = req.app.get('mysql');
         console.log(req.body)
-        var sql = "UPDATE Patrons SET firstName = ?, lastName = ?, registerDate = ?, contactEmail = ?, contactPhone = ?, favoriteTitle = ? WHERE memberID = ?";
+        var sql = "UPDATE Patrons SET firstName = ?, lastName = ?, registerDate = ?, contactEmail = ?, contactPhone = ?, favoriteTitle = ? WHERE memberID = ?;";
         // checks if the favorite title was a null value
         var inserts = [];
         if (req.body.favoriteTitle == 'null') {
