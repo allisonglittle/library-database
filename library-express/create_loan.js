@@ -4,7 +4,7 @@ module.exports = function () {
 
     /*Get loan information from database*/
     function getLoanDetails(res, mysql, context, complete) {
-        mysql.pool.query("SELECT l.loanID, CONCAT(p.firstName, ' ', p.lastName) as 'patronName', DATE_FORMAT(l.loanDate, '%m/%d/%Y') as loanDate, count(li.bookID) as 'bookCount' FROM Loans l INNER JOIN Patrons p ON l.memberID = p.memberID INNER JOIN LoanItems li on l.loanID = li.loanID GROUP BY l.loanID", function (error, results, fields) {
+        mysql.pool.query("SELECT l.loanID, CONCAT(p.firstName, ' ', p.lastName) as 'patronName', DATE_FORMAT(l.loanDate, '%m/%d/%Y') as loanDate, count(li.bookID) as 'bookCount' FROM Loans l INNER JOIN Patrons p ON l.memberID = p.memberID LEFT JOIN LoanItems li on l.loanID = li.loanID GROUP BY l.loanID", function (error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
