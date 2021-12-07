@@ -26,7 +26,7 @@ module.exports = function(){
             }
         }
     });
-
+    
     /* Adds a title, redirects to the title page after adding */
     router.post('/', function(req, res){
         console.log(req.body);
@@ -41,13 +41,12 @@ module.exports = function(){
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error));
-                res.write(JSON.stringify(error));
-                res.end();
+                res.send("<script>alert(\"Duplicate ISBN found. Unable to add new title.\"); window.location.href = \"/titles\"; </script>");
             } else{
                 res.redirect('/titles');
             }
         });
     });
-
+    
     return router;
 }();
